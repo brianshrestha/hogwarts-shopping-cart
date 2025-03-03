@@ -67,16 +67,16 @@
           </div>
           <div class="summary-item">
             <span>Shipping estimate</span>
-            <span>${{shippingEstimate}}</span>
+            <span>${{ shippingEstimate }}</span>
           </div>
           <div class="summary-item">
             <span>Tax estimate</span>
-            <span>${{taxEstimate}}</span>
+            <span>${{ taxEstimate }}</span>
           </div>
         </div>
         <div class="summary-total">
           <strong>Order total</strong>
-          <strong>${{total}}</strong>
+          <strong>${{ total }}</strong>
         </div>
         <button class="checkout-button">Checkout</button>
       </div>
@@ -178,6 +178,14 @@ let taxEstimate = computed(() => subtotal.value * 0.08);
 
 let total = computed(
   () => subtotal.value + shippingEstimate.value + taxEstimate.value
+);
+
+watch(shoppingCartItems, () => {
+  localStorage.setItem(
+    "hogwartsShoppingCart",
+    JSON.stringify(shoppingCartItems.value)
+  );
+}, {deep: true}
 );
 </script>
 
